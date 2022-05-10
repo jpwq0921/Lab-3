@@ -2,6 +2,7 @@ print("Lab 3 - Software Unit Testing with PyTest")
 
 SORT_ASCENDING = 0
 SORT_DESCENDING = 1
+SORT_NOINT = 2
 
 
 def bubble_sort(arr, sorting_order):
@@ -12,7 +13,10 @@ def bubble_sort(arr, sorting_order):
     # Get number of elements in the list
     n = len(arr_result)
 
-    if n < 10:
+    if sorting_order == SORT_NOINT:
+        return 3
+
+    elif n == 10:
         # Traverse through all array elements
         for i in range(n - 1):
             # range(n) also work but outer loop will
@@ -33,24 +37,49 @@ def bubble_sort(arr, sorting_order):
                 else:
                     # Return an empty array
                     arr_result = []
-    else:
-        arr_result = -1
+    elif n > 10:
+        return 1
+    elif n == 0:
+        return 0
+    elif n < 10:
+        return 2
+
+
 
     return arr_result
-
 def main():
     # Driver code to test above
-    arr = [64, 34, 25, 12, 22, 11, 90]
+    arr = [5.5]
+    #print(arr)
+    length = len(arr)
+    #~print(length)
+    for x in arr:
+        if int(x) != x:
+            result = bubble_sort(arr,SORT_NOINT)
+            print(result)
+        elif length == 10:
+            # Sort in ascending order
+            result = bubble_sort(arr, SORT_ASCENDING)
+            print("\nSorted array in ascending order: ")
+            print(result)
+            # Sort in descending order
+            print("Sorted array in descending order: ")
+            result = bubble_sort(arr, SORT_DESCENDING)
+            print(result)
+        elif length > 10:
+            result = bubble_sort(arr, SORT_DESCENDING)
+            print(result)
+        elif length == 0:
+            result = bubble_sort(arr, SORT_DESCENDING)
+            print(result)
+        elif length < 10:
+            result = bubble_sort(arr, SORT_DESCENDING)
+            print(result)
 
-    # Sort in ascending order
-    result = bubble_sort(arr, SORT_ASCENDING)
-    print("\nSorted array in ascending order: ")
-    print(result)
 
-    # Sort in descending order
-    print("Sorted array in ascending order: ")
-    result = bubble_sort(arr, SORT_DESCENDING)
-    print(result)
+
+
+
 
 if __name__ == "__main__":
     main()
